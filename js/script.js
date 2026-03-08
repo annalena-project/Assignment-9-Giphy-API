@@ -6,5 +6,6 @@ const endpoint =
 fetch(endpoint)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
+    const images = data.data;
+    console.log(images);
   });
