@@ -2,17 +2,21 @@ console.log("script.js loaded");
 
 const gifContainer = document.querySelector("#gif-container");
 const button = document.querySelector("#fetch-gif-btn");
+const searchInput = document.querySelector("#search-input");
 
-const endpoint =
-"https://api.giphy.com/v1/gifs/search?api_key=LLenvCeIrVVm10joOahJcoiP1VgXJiMj&q=dogs&limit=25&offset=0&rating=g&lang=en";
+button.addEventListener("click", function () {
 
-fetch(endpoint)
-  .then(response => response.json())
-  .then(data => {
-    const images = data.data;
-    console.log(images);
+  const searchTerm = searchInput.value;
 
-    button.addEventListener("click", function () {
+  const endpoint =
+  `https://api.giphy.com/v1/gifs/search?api_key=LLenvCeIrVVm10joOahJcoiP1VgXJiMj&q=${searchTerm}&limit=25&offset=0&rating=g&lang=en`;
+
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+
+      const images = data.data;
+      console.log(images);
 
       gifContainer.innerHTML = "";
 
@@ -25,6 +29,4 @@ fetch(endpoint)
 
     });
 
-  });
-
-  
+});
